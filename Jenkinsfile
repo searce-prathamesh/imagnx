@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Use `npm ci` to install project dependencies
-                sh 'npm ci'
+                sh 'npm install'
             }
         }
     }
