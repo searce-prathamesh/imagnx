@@ -12,11 +12,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Remove package-lock.json') {
-            steps {
-                sh 'rm package-lock.json'
-            }
-        }
         stage('Build') {
             steps {
                 // Use `npm ci` to install project dependencies
