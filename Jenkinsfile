@@ -17,6 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Use `npm ci` to install project dependencies
+                sh 'npm install npm@latest'
                 sh 'pnpm install'
             }
         }
