@@ -16,9 +16,6 @@ pipeline {
             steps {
                 // Use `npm ci` to install project dependencies
                 sh 'yarn install'
-                script {
-                    patchVersion = patchVersion + 1
-                }
                 sh "yarn --new-version ${majorVersion}.${minorVersion}.${patchVersion}"
 
                 // Example: Package your application and create an artifact with the version
