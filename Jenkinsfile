@@ -21,7 +21,7 @@ pipeline {
                 // Example: Package your application and create an artifact with the version
                 sh "yarn pack"
                 sh "ls -la"
-                sh "mv imagix-${majorVersion}.${minorVersion}.${patchVersion}.tgz my-artifact-${majorVersion}.${minorVersion}.${patchVersion}.tgz"
+                sh "mv imagix-v${majorVersion}.${minorVersion}.${patchVersion}.tgz my-artifact-${majorVersion}.${minorVersion}.${patchVersion}.tgz"
                 archiveArtifacts artifacts: 'my-artifact-*.tgz', allowEmptyArchive: true
             }
         }
