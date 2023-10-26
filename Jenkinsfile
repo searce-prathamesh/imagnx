@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Use `npm ci` to install project dependencies
-                sh 'yarn install'
+                sh 'pnpm install'
             }
         }
     }
