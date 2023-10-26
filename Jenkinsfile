@@ -6,18 +6,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Update npm') {
-            steps {
-                sh 'npm install npm@latest'
-            }
-        }
         stage('Checkout') {
             steps {
                 // Check out the source code from the repository
                 checkout scm
             }
         }
-
+        stage('Remove package-lock.json') {
+            steps {
+                sh 'rm package-lock.json'
+            }
+        }
         stage('Build') {
             steps {
                 // Use `npm ci` to install project dependencies
@@ -25,7 +24,7 @@ pipeline {
                 script {
                     patchVersion = patchVersion + 1
                 }
-                sh "yarn version ${majorVersion}.${minorVersion}.${patchVersion}"
+                sh "yarn --new-version ${majorVersion}.${minorVersion}.${patchVersion}"
 
                 // Example: Package your application and create an artifact with the version
                 sh "yarn pack"
