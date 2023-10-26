@@ -14,6 +14,9 @@ pipeline {
         }
         stage('Build') {
             steps {
+                script {
+                    patchVersion = patchVersion + 1
+                }
                 // Use `npm ci` to install project dependencies
                 sh 'yarn install'
                 sh "yarn --new-version ${majorVersion}.${minorVersion}.${patchVersion}"
