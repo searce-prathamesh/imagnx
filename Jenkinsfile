@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Update npm') {
             steps {
-                sh 'npm install -g npm@latest'
+                sh 'npm install npm@latest'
             }
         }
         stage('Checkout') {
