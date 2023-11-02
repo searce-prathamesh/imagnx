@@ -3,7 +3,6 @@ import ai.stainless.jenkins.ReleaseManager
 import ai.stainless.SemverFormatter
 
 def releaseManager = new ReleaseManager(this)
-def BRANCH_NAME = 'main'
 releaseManager.prerelease = '%BRANCH_NAME%-%BUILD_NUMBER%'
 
 pipeline {
@@ -18,7 +17,7 @@ pipeline {
           // but Docker doesn't support that, so we render it using a custom formatter here
           // but use a dash in Dockerhub
           def semver = releaseManager.artifact()
-          semver.prerelease = "${env.BRANCH_NAME}"
+          semver.prerelease = 'main'      //"${env.BRANCH_NAME}"
           echo "prerelease is ${semver.prerelease}"
           semver.buildMetadata = "${currentBuild.number}"
           echo "buildMetadata is ${semver.buildMetadata}"
