@@ -26,7 +26,7 @@ pipeline {
           versionString = SemverFormatter.ofPattern("M.m.p'-'?P'+'?B").format(semver)
           sh "sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq"  
           sh "sudo chmod +x /usr/bin/yq"
-          sh "sudo yq new -I '.version=\"${versionString}\"' pubspec.yaml"
+   //       sh "sudo yq new -i '.version=\"${versionString}\"' pubspec.yaml"
         }
     }
   }
