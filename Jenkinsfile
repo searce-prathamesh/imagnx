@@ -9,7 +9,7 @@ pipeline {
   agent any
 
     environment {
-        BRANCH_NAME= 'main
+        BRANCH_NAME= 'main'
     }   
     stages {
     stage('Build') {
