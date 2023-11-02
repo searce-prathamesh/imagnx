@@ -1,31 +1,30 @@
-def majorVersion = 1
-def minorVersion = 0
-def patchVersion = 0
+@Library('jenkins-semci')
+import ai.stainless.jenkins.ReleaseManager
+import ai.stainless.SemverFormatter
+
+def releaseManager = new ReleaseManager(this)
+releaseManager.prerelease = '%BRANCH_NAME%-%BUILD_NUMBER%'
 
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                // Check out the source code from the repository
-                checkout scm
-            }
-        }
-        stage('Build') {
-            steps {
-                // Use `npm ci` to install project dependencies
-                sh 'yarn install'
-                sh "yarn --new-version ${majorVersion}.${minorVersion}.${patchVersion}"
-//                script {
- //                   patchVersion = patchVersion + 1
-   //             }
-                // Example: Package your application and create an artifact with the version
-                sh "yarn pack"
-                sh "ls -la"
-                sh "mv imagix-v${majorVersion}.${minorVersion}.${patchVersion}.tgz my-artifact-${majorVersion}.${minorVersion}.${patchVersion}.tgz"
-                archiveArtifacts artifacts: 'my-artifact-*.tgz', allowEmptyArchive: true
-            }
+  environment { }
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          // The version in the app needs to use a "+" to separate the build number
+          // but Docker doesn't support that, so we render it using a custom formatter here
+          // but use a dash in Dockerhub
+          def semver = releaseManager.artifact()
+          semver.prerelease = "${env.BRANCH_NAME}"
+          echo "prerelease is ${semver.prerelease}"
+          semver.buildMetadata = "${currentBuild.number}"
+          echo "buildMetadata is ${semver.buildMetadata}"
+          versionString = SemverFormatter.ofPattern("M.m.p'-'?P'+'?B").format(semver)
+          sh "yq e -i '.version=\"${versionString}\"' pubspec.yaml"
         }
     }
+  }
 }
