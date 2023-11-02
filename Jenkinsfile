@@ -17,6 +17,7 @@ pipeline {
           // The version in the app needs to use a "+" to separate the build number
           // but Docker doesn't support that, so we render it using a custom formatter here
           // but use a dash in Dockerhub
+          library "jenkins-semci"
           def semver = releaseManager.artifact()
           semver.prerelease = "${env.BRANCH_NAME}"
           echo "prerelease is ${semver.prerelease}"
