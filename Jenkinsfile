@@ -24,7 +24,8 @@ pipeline {
           semver.buildMetadata = "${currentBuild.number}"
           echo "buildMetadata is ${semver.buildMetadata}"
           versionString = SemverFormatter.ofPattern("M.m.p'-'?P'+'?B").format(semver)
-          sh "sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq"
+          sh "sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq  
+          sh "chmod +x /usr/bin/yq"
           sh "sudo yq e -i '.version=\"${versionString}\"' pubspec.yaml"
         }
     }
