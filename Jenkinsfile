@@ -3,23 +3,13 @@ import ai.stainless.jenkins.ReleaseManager
 import ai.stainless.SemverFormatter
 
 def releaseManager = new ReleaseManager(this)
+def BRANCH_NAME = 'main'
 releaseManager.prerelease = '%BRANCH_NAME%-%BUILD_NUMBER%'
 
 pipeline {
   agent any
 
- // environment { }
-
-  stages {
-    stage('Set Branch Name') {
-            steps {
-                script {
-                    // Set the BRANCH_NAME environment variable
-                    setBranchName("${env.BRANCH_NAME}")
-                }
-            }
-        }
-    
+ // environment { }   
     stage('Build') {
       steps {
         script {
