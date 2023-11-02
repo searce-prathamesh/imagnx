@@ -3,11 +3,11 @@ import ai.stainless.jenkins.ReleaseManager
 import ai.stainless.SemverFormatter
 
 def releaseManager = new ReleaseManager(this)
+def yqDir = "${env.WORKSPACE}/yq"
 releaseManager.prerelease = '%BRANCH_NAME%-%BUILD_NUMBER%'
 
 pipeline {
   agent any
-
     environment {
         BRANCH_NAME= 'main'
     }   
@@ -25,7 +25,7 @@ pipeline {
           echo "buildMetadata is ${semver.buildMetadata}"
           versionString = SemverFormatter.ofPattern("M.m.p'-'?P'+'?B").format(semver)
           sh "sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq"  
-          sh "chmod +x /usr/bin/yq"
+          sh "sudo chmod +x /usr/bin/yq"
           sh "sudo yq e -i '.version=\"${versionString}\"' pubspec.yaml"
         }
     }
