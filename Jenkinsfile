@@ -11,8 +11,8 @@ pipeline {
     environment {
         BRANCH_NAME= 'main'
     }   
-    stages {
-    stage('Build') {
+  stages {
+    stage('Versioning') {
       steps {
         script {
           // The version in the app needs to use a "+" to separate the build number
@@ -30,7 +30,20 @@ pipeline {
           sh "sudo yq new '.version=\"${versionString}\"' pubspec.yaml"
           sh "pwd"
         }
+      }
+    }
+    stage('Build') {
+      steps {
+        // Run your Node.js build command here (e.g., npm run build)
+        sh 'npm run build' // Change this to your actual build command
+      }
+    }
+        
+    stage('Package') {
+      steps {
+        // Package your Node.js application here (e.g., creating a distribution)
+        sh 'npm pack' // Change this to your actual packaging command
+      }
     }
   }
-}
 }
