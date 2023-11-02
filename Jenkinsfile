@@ -8,7 +8,7 @@ releaseManager.prerelease = '%BRANCH_NAME%-%BUILD_NUMBER%'
 pipeline {
   agent any
 
-  environment { }
+ // environment { }
 
   stages {
     stage('Build') {
