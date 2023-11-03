@@ -1,4 +1,4 @@
-library('jenkins-semci')
+library('jenkins-semci') _
 import ai.stainless.jenkins.ReleaseManager
 import ai.stainless.SemverFormatter
 pipeline {
