@@ -1,4 +1,4 @@
-library('semver-lib') _
+@Library('jenkins-semver')
 
 pipeline {
     agent any
