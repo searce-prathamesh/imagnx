@@ -1,6 +1,11 @@
 pipeline {
     agent any   
     stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+            }
+        }
         stage('Build Node Application') {
             steps {
                 // Check out your source code from a version control system (e.g., Git)
