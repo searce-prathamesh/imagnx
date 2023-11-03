@@ -23,18 +23,6 @@ pipeline {
                 }
             }
         }
-
-       # stage('Semantic Versioning') {
-       #     steps {
-       #         script {
-       #             def version = semver.getNextVersion()
-       #             echo "Generated Semantic Version: ${version}"
-
-       #             // You can use the generated version in your artifact naming or publishing
-       #         }
-       #     }
-       # }
-
         stage('Publish Artifacts') {
             steps {
                 // Publish your Node.js application with the version generated in the previous stage
