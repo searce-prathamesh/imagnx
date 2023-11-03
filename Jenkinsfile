@@ -24,6 +24,7 @@ pipeline {
         stage('Semantic Versioning') {
             steps {
                 script {
+                    def semci = new Semci()
                     def version = semci.getNextVersion()
                     echo "Generated Semantic Version: ${version}"
 
