@@ -1,3 +1,4 @@
+@Library('semver-lib')
 pipeline {
     agent any
 
