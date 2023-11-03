@@ -1,4 +1,4 @@
-library('jenkins-semci') _
+@Library('jenkins-semci')
 import ai.stainless.jenkins.ReleaseManager
 
 pipeline {
