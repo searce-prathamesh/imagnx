@@ -20,7 +20,7 @@ pipeline {
         stage('Semantic Versioning') {
             steps {
                 script {
-                    def version = semci.getNextVersion()
+                    def version = semver.getNextVersion()
                     echo "Generated Semantic Version: ${version}"
 
                     // You can use the generated version in your artifact naming or publishing
