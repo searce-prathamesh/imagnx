@@ -43,9 +43,5 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Cleanup or perform other post-build tasks
-        }
-    }
+    
 }
