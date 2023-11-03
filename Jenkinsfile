@@ -13,9 +13,6 @@ pipeline {
                     nodejs('NodeJSInstallationName') {
                         // Install dependencies (e.g., using npm)
                         sh 'npm install'
-
-                        // Build your Node.js application (e.g., using npm run build)
-                        sh 'npm run build'
                     }
                 }
             }
