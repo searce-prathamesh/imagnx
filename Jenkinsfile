@@ -1,7 +1,6 @@
+@Library('jenkins-semci')
 pipeline {
-    agent any
-    @Library('jenkins-semver')
-    
+    agent any   
     stages {
         stage('Build Node Application') {
             steps {
@@ -22,7 +21,7 @@ pipeline {
         stage('Semantic Versioning') {
             steps {
                 script {
-                    def version = semver.getNextVersion()
+                    def version = semci.getNextVersion()
                     echo "Generated Semantic Version: ${version}"
 
                     // You can use the generated version in your artifact naming or publishing
