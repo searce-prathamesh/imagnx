@@ -1,7 +1,3 @@
-@Library('jenkins-semci')
-import ai.stainless.jenkins.ReleaseManager
-import ai.stainless.SemverFormatter
-
 pipeline {
     agent any   
     stages {
@@ -42,7 +38,5 @@ pipeline {
                 sh "tar -czf myapp-${version}.tar.gz -C app ."
             }
         }
-    }
-
-    
+    }    
 }
