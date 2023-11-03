@@ -1,5 +1,5 @@
 import jenkins.model.*
-@Liabrary('semci') _
+@Liabrary('jenkins-semci') _
 pipeline {
     agent any   
     stages {
