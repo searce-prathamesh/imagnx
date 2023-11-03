@@ -10,7 +10,7 @@ pipeline {
                 
                 script {
                     // Use Node.js to build your application
-                    nodejs('NodeJSInstallationName') {
+                    nodejs('nodejs') {
                         // Install dependencies (e.g., using npm)
                         sh 'npm install'
                     }
