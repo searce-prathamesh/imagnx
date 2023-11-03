@@ -1,8 +1,7 @@
-@Library('jenkins-semver')
-
 pipeline {
     agent any
-
+    @Library('jenkins-semver')
+    
     stages {
         stage('Build Node Application') {
             steps {
