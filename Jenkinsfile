@@ -18,20 +18,22 @@ pipeline {
                         // Install dependencies (e.g., using npm)
                         sh 'npm install'
                     }
-                }
-            }
-        }
-
-        stage('Semantic Versioning') {
-            steps {
-                script {
                     def version = semver.getNextVersion()
                     echo "Generated Semantic Version: ${version}"
-
-                    // You can use the generated version in your artifact naming or publishing
                 }
             }
         }
+
+       # stage('Semantic Versioning') {
+       #     steps {
+       #         script {
+       #             def version = semver.getNextVersion()
+       #             echo "Generated Semantic Version: ${version}"
+
+       #             // You can use the generated version in your artifact naming or publishing
+       #         }
+       #     }
+       # }
 
         stage('Publish Artifacts') {
             steps {
