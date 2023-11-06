@@ -1,4 +1,4 @@
-@Library('semver-compare-lib@1.0.0')
+@Library('semver-compare-lib@1.0.0') _
 pipeline {
     agent any   
     stages {
