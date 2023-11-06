@@ -1,6 +1,8 @@
 pipeline {
     agent any
-    tools {nodejs "nodejs"}
+    tools {
+        nodejs "nodejs"
+    }
     stages {
         stage('Build') {
             steps {
@@ -8,26 +10,20 @@ pipeline {
             }
         }
 
-    //    stage('Make File') {
-    //        steps {
-    //            script {
-   //                 def counter = 0
-   //                 def data = "Version" + counter
-   //                 writeFile(file: 'version.txt', text: counter.toString())
-   //             }
-   //         }
-   //     }
-
         stage('Increment Version') {
             steps {
                 script {
                     def versionFile = 'version.txt'
                     def versionCounter = 0
                     if (fileExists(versionFile)) {
-                        versionCounter = readFile(versionFile).toInteger() + 1
+                        versionCounter = readFile(versionFile).toInteger()
                     }
-                    def version = "Version" + versionCounter
-                    echo "Building with version: ${version}"
+                    versionCounter++
+                    def major = env.MAJOR_VERSION ?: 1 // You can set these values as needed
+                    def minor = env.MINOR_VERSION ?: 0
+                    def patch = versionCounter
+                    def version = "${major}.${minor}.${patch}"
+                    echo "Incrementing semantic version to: ${version}"
                     writeFile(file: versionFile, text: versionCounter.toString())
                 }
             }
@@ -39,15 +35,12 @@ pipeline {
                     def version = readFile('version.txt').trim()
                     echo "Using Semantic Version: ${version}"
 
-                    // Set the correct directory for your Node.js application
-                    def appDirectory = '/var/lib/jenkins/workspace/semantic versioning'  // Modify to match your directory structure
+                    def appDirectory = '/var/lib/jenkins/workspace/semantic-versioning' // Modify to match your directory structure
                     def packageJsonPath = "${appDirectory}/package.json"
 
-                    // Check if the package.json file exists
                     if (fileExists(packageJsonPath)) {
-                        // Run npm commands within the app directory
                         dir(appDirectory) {
-                            sh "npm run -Dartifactversion=${version}"
+                            sh "npm run build -- --env.VERSION=${version}"
                         }
                     } else {
                         error("package.json not found in '${packageJsonPath}'")
