@@ -40,7 +40,7 @@ pipeline {
                     echo "Using Semantic Version: ${version}"
 
                     // Set the correct directory for your Node.js application
-                    def appDirectory = 'sematic versioning'  // Modify to match your directory structure
+                    def appDirectory = 'semantic versioning'  // Modify to match your directory structure
                     def packageJsonPath = "${appDirectory}/package.json"
 
                     // Check if the package.json file exists
