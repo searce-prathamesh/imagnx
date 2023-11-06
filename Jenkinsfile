@@ -46,13 +46,14 @@ pipeline {
                     echo "Using Semantic Version: ${version}"
 
                     // Run your Maven package with the version
+                    nodejs('nodejs') {
                     sh "npm install"
                     sh "npm run -Dartifactversion=${version}"
                 }
                 echo "Build and Package Completed"
             }
         }
-
+        }
  //       stage('Build Node Application') {
   //          steps {
                 // Check out your source code from a version control system (e.g., Git)
