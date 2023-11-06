@@ -29,11 +29,9 @@ pipeline {
                 script {
                     def versionFile = 'version.txt'
                     def versionCounter = 0
-            
                     if (fileExists(versionFile)) {
                         versionCounter = readFile(versionFile).toInteger() + 1
                     }
-
                     def version = "Version" + versionCounter
                     echo "Building with version: ${version}"
                     writeFile(file: versionFile, text: versionCounter.toString())
@@ -55,7 +53,6 @@ pipeline {
                     if (fileExists(packageJsonPath)) {
                         // Run npm commands within the app directory
                         dir(appDirectory) {
-                            nodejs('nodejs') {
                                 sh "npm run -Dartifactversion=${version}"
                             }
                         }
