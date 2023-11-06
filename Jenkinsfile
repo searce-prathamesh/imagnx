@@ -40,7 +40,6 @@ pipeline {
 
                     if (fileExists(packageJsonPath)) {
                         dir(appDirectory) {
-                            sh 'ls -la ' + appDirectory
                             sh "npm run build -- --env.VERSION=${version}"
                         }
                     } else {
