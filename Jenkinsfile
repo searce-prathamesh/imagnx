@@ -2,14 +2,9 @@ pipeline {
     agent any
     tools {nodejs "nodejs"}
     stages {
-        stage('Clean Workspace') {
-            steps {
-                deleteDir()
-            }
-        }
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'sudo npm install'
             }
         }
 
