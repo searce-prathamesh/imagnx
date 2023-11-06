@@ -48,7 +48,7 @@ pipeline {
                     // Check if the package.json file exists
                     if (fileExists(packageJsonPath)) {
                         // Run npm commands within the app directory
-                        dir(semantic versioning) {
+                        dir(appDirectory) {
                             nodejs('nodejs') {
                                 sh 'npm install'
                                 sh "npm run -Dartifactversion=${version}"
