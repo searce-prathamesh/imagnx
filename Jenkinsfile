@@ -4,9 +4,19 @@ pipeline {
         nodejs "nodejs"
     }
     stages {
-        stage('Build') {
+        stage('Build dependancies') {
             steps {
                 sh 'npm install'
+            }
+        }
+
+         stage('Version storgae file') {
+            steps {
+                script {
+                    def counter = 0
+                    def data = "Version" + counter
+                    writeFile(file: 'version.txt', text: counter.toString())
+                }
             }
         }
 
