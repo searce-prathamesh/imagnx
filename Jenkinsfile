@@ -7,31 +7,28 @@ pipeline {
                 deleteDir()
             }
         }
-         stage('Build Node ') {
+
+        stage('Make File') {
             steps {
                 script {
                     def counter = 0
                     def data = "Version" + counter
                     writeFile(file: 'version.txt', text: counter.toString())
-                }   
-        }
+                }
+            }
         }
 
         stage('Increment Version') {
             steps {
                 script {
                     def versionFile = 'version.txt'
-
-                    // Initialize the version counter
                     def versionCounter = 0
 
-                    // Check if the version file exists
                     if (fileExists(versionFile)) {
                         versionCounter = readFile(versionFile).toInteger() + 1
                     }
 
                     def version = "Version" + versionCounter
-
                     echo "Building with version: ${version}"
                     writeFile(file: versionFile, text: versionCounter.toString())
                 }
@@ -41,31 +38,28 @@ pipeline {
         stage('Build and Package') {
             steps {
                 script {
-                    // Common code for both 'Increment Version' and 'Build Node Application'
                     def version = readFile('version.txt').trim()
                     echo "Using Semantic Version: ${version}"
 
-                    // Run your Maven package with the version
-                    nodejs('nodejs') {
-                    sh "npm install"
-                    sh "npm run -Dartifactversion=${version}"
+                    // Set the correct directory for your Node.js application
+                    def appDirectory = 'app'  // Modify to match your directory structure
+                    def packageJsonPath = "${appDirectory}/package.json"
+
+                    // Check if the package.json file exists
+                    if (fileExists(packageJsonPath)) {
+                        // Run npm commands within the app directory
+                        dir(semantic versioning) {
+                            nodejs('nodejs') {
+                                sh 'npm install'
+                                sh "npm run -Dartifactversion=${version}"
+                            }
+                        }
+                    } else {
+                        error("package.json not found in '${packageJsonPath}'")
+                    }
                 }
                 echo "Build and Package Completed"
             }
         }
-        }
- //       stage('Build Node Application') {
-  //          steps {
-                // Check out your source code from a version control system (e.g., Git)
-                // This assumes your Node.js application is in a directory named 'app'
-   //             checkout scm
-
-     //           script {
-                    // Use Node.js to build your application
-       //             nodejs('nodejs') {
-                        // Install dependencies (e.g., using npm)
-         //               sh 'npm install'
     }
- }
-            
-        
+}
