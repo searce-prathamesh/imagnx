@@ -46,23 +46,23 @@ pipeline {
                     echo "Using Semantic Version: ${version}"
 
                     // Run your Maven package with the version
-                    bat "npm run -Dartifactversion=${version}"
+                    sh "npm run -Dartifactversion=${version}"
                 }
                 echo "Build and Package Completed"
             }
         }
 
-        stage('Build Node Application') {
-            steps {
+ //       stage('Build Node Application') {
+  //          steps {
                 // Check out your source code from a version control system (e.g., Git)
                 // This assumes your Node.js application is in a directory named 'app'
-                checkout scm
+   //             checkout scm
 
-                script {
+     //           script {
                     // Use Node.js to build your application
-                    nodejs('nodejs') {
+       //             nodejs('nodejs') {
                         // Install dependencies (e.g., using npm)
-                        sh 'npm install'
+         //               sh 'npm install'
                     }
                 }
             }
