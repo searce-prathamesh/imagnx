@@ -8,15 +8,15 @@ pipeline {
             }
         }
 
-        stage('Make File') {
-            steps {
-                script {
-                    def counter = 0
-                    def data = "Version" + counter
-                    writeFile(file: 'version.txt', text: counter.toString())
-                }
-            }
-        }
+    //    stage('Make File') {
+    //        steps {
+    //            script {
+   //                 def counter = 0
+   //                 def data = "Version" + counter
+   //                 writeFile(file: 'version.txt', text: counter.toString())
+   //             }
+   //         }
+   //     }
 
         stage('Increment Version') {
             steps {
