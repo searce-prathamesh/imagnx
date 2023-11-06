@@ -9,9 +9,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-        sh 'npm install'
-           }
-        }  
+                sh 'npm install'
+            }
+        }
 
         stage('Make File') {
             steps {
@@ -19,7 +19,6 @@ pipeline {
                     def counter = 0
                     def data = "Version" + counter
                     writeFile(file: 'version.txt', text: counter.toString())
-                    }
                 }
             }
         }
@@ -53,12 +52,9 @@ pipeline {
                     if (fileExists(packageJsonPath)) {
                         // Run npm commands within the app directory
                         dir(appDirectory) {
-                                sh "npm run -Dartifactversion=${version}"
-                            }
+                            sh "npm run -Dartifactversion=${version}"
                         }
-                    } 
-                    else 
-                    {
+                    } else {
                         error("package.json not found in '${packageJsonPath}'")
                     }
                 }
@@ -66,4 +62,4 @@ pipeline {
             }
         }
     }
-
+}
