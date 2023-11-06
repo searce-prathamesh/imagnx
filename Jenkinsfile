@@ -40,7 +40,7 @@ pipeline {
 
                     if (fileExists(packageJsonPath)) {
                         dir(appDirectory) {
-                            sh "npm run build -- --env.VERSION=${version}"
+                  //          sh "npm run build -- --env.VERSION=${version}"
                         }
                     } else {
                         error("package.json not found in '${packageJsonPath}'")
