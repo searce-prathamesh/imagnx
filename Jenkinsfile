@@ -7,7 +7,7 @@ pipeline {
                 deleteDir()
             }
         }
-         stage('Build Node Application') {
+         stage('Build Node ') {
             steps {
                 script {
                     def counter = 0
