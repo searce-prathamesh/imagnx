@@ -18,7 +18,7 @@ pipeline {
                     nodejs('nodejs') {
                         // Install dependencies (e.g., using npm)
                         sh 'npm install'
-                        sh 'sh 'gitversion /output buildserver'
+                        sh 'gitversion /output buildserver'
                     }
                     def version = semver.getNextVersion()
                     echo "Generated Semantic Version: ${version}"
