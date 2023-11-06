@@ -46,6 +46,7 @@ pipeline {
                     echo "Using Semantic Version: ${version}"
 
                     // Run your Maven package with the version
+                    sh "npm install"
                     sh "npm run -Dartifactversion=${version}"
                 }
                 echo "Build and Package Completed"
