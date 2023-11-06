@@ -54,9 +54,7 @@ pipeline {
                                 sh "npm run -Dartifactversion=${version}"
                             }
                         }
-                    }
-                    } 
-                    else {
+                    } else {
                         error("package.json not found in '${packageJsonPath}'")
                     }
                 }
