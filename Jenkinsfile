@@ -16,6 +16,7 @@ pipeline {
                     writeFile(file: 'version.txt', text: counter.toString())
                     nodejs('nodejs') {
                         sh 'npm install'
+                    }
                 }
             }
         }
@@ -63,5 +64,4 @@ pipeline {
             }
         }
     }
-}
 }
