@@ -7,6 +7,11 @@ pipeline {
                 deleteDir()
             }
         }
+        stage('Build') {
+            steps {
+        sh 'npm install'
+           }
+        }  
 
         stage('Make File') {
             steps {
@@ -14,8 +19,6 @@ pipeline {
                     def counter = 0
                     def data = "Version" + counter
                     writeFile(file: 'version.txt', text: counter.toString())
-                    nodejs('nodejs') {
-                        sh 'npm install'
                     }
                 }
             }
