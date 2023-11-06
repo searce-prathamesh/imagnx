@@ -35,7 +35,7 @@ pipeline {
                     def version = readFile('version.txt').trim()
                     echo "Using Semantic Version: ${version}"
 
-                    def appDirectory = '/var/lib/jenkins/workspace/semantic-versioning' // Modify to match your directory structure
+                    def appDirectory = '/var/lib/jenkins/workspace/semantic versioning' // Modify to match your directory structure
                     def packageJsonPath = "${appDirectory}/package.json"
 
                     if (fileExists(packageJsonPath)) {
