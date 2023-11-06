@@ -63,9 +63,7 @@ pipeline {
        //             nodejs('nodejs') {
                         // Install dependencies (e.g., using npm)
          //               sh 'npm install'
-                    }
-                }
-            }
-        }
     }
-}
+ }
+            
+        
