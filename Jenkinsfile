@@ -40,7 +40,9 @@ pipeline {
                 script {
                     def version = readFile('version.txt').trim()
                     echo "Using Semantic Version: ${version}"
-
+                    nodejs('nodejs') {
+                    sh 'npm install'
+                    }
                     // Set the correct directory for your Node.js application
                     def appDirectory = 'Semantic Versioning'  // Modify to match your directory structure
                     def packageJsonPath = "${appDirectory}/package.json"
@@ -49,8 +51,6 @@ pipeline {
                     if (fileExists(packageJsonPath)) {
                         // Run npm commands within the app directory
                         dir(appDirectory) {
-                            nodejs('nodejs') {
-                                sh 'npm install'
                                 sh "npm run -Dartifactversion=${version}"
                             }
                         }
