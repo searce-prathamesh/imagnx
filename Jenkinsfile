@@ -14,7 +14,8 @@ pipeline {
                     def counter = 0
                     def data = "Version" + counter
                     writeFile(file: 'version.txt', text: counter.toString())
-                    sh 'npm install'
+                    nodejs('nodejs') {
+                        sh 'npm install'
                 }
             }
         }
