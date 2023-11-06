@@ -57,7 +57,8 @@ pipeline {
                             }
                         }
                     } 
-                    else {
+                    else 
+                    {
                         error("package.json not found in '${packageJsonPath}'")
                     }
                 }
