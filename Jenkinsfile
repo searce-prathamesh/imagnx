@@ -60,13 +60,7 @@ pipeline {
                 echo "Build and Package Completed"
             }
         }
-        stage('Exec npm commands') {
-			steps {
-					// Pack and deploy the npm package
-					jf 'npm publish'
-				}
-			}
-		}
+       
         
         stage('Publish build info') {
 			steps {
