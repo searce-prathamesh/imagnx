@@ -62,13 +62,6 @@ pipeline {
         }
         stage('Exec npm commands') {
 			steps {
-				dir('npm-example') {
-					// Configure npm project's repositories
-					jf 'npm-config --repo-resolve npm --repo-deploy npm'
-
-					// Install dependencies
-					jf 'npm install'
-
 					// Pack and deploy the npm package
 					jf 'npm publish'
 				}
