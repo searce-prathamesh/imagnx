@@ -1,6 +1,7 @@
 pipeline {
     agent any
     tools {
+        jfrog 'jfrog-cli'
         nodejs "nodejs"
     }
     stages {
